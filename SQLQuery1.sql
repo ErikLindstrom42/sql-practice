@@ -11,21 +11,35 @@ SELECT ArtistID,
 
 
 
-SELECT DISTINCT 
-       a.ArtistName, GenreId
-  FROM Album s
-       LEFT JOIN Artist a on s.ArtistId = a.id
+--SELECT DISTINCT 
+--       a.ArtistName, GenreId
+--  FROM Album s
+--       LEFT JOIN Artist a on s.ArtistId = a.id
        
-  where GenreId = 7;
+--  where GenreId = 7;
+SELECT art.ArtistName
+FROM Artist art inner join
+Album alb on art.id = alb.ArtistId
+WHERE alb.GenreId = (SELECT id
+					FROM Genre
+					WHERE label ='Pop');
+
+
+SELECT art.ArtistName
+FROM Artist art inner join
+Album alb on art.id = alb.ArtistId
+WHERE alb.GenreId IN (SELECT id
+					FROM Genre
+					WHERE label ='Jazz' OR label ='Rock');
 
 
   
-SELECT DISTINCT 
-       a.ArtistName, GenreId
-  FROM Album s
-       LEFT JOIN Artist a on s.ArtistId = a.id
+--SELECT DISTINCT 
+--       a.ArtistName, GenreId
+--  FROM Album s
+--       LEFT JOIN Artist a on s.ArtistId = a.id
        
-  where GenreId = 2 OR GenreID = 4;
+--  where GenreId = 2 OR GenreID = 4;
 
 select Title
 FROM Album
